@@ -9,6 +9,9 @@ class ProfileDetailPage extends StatefulWidget {
 }
 
 class _ProfileDetailPageState extends State<ProfileDetailPage> {
+  // final GlobalKey<FormState> _form=GlobalKey<FormState>();
+  // final TextEditingController _pass=TextEditingController();
+  // final TextEditingController _confirmPass=TextEditingController();
   var _enableNameField = false;
   var _enableAddressField = false;
   var _enableNumberField = false;
@@ -21,67 +24,8 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
   String _email = 'kristina@gmail.com';
   String _genderValue = 'Female';
 
-  Widget _buildContainer(
-      double height, double width, String text, IconData icon) {
-    return Container(
-      height: height * 0.08,
-      width: width * 0.8,
-      margin: EdgeInsets.only(
-        top: height * 0.014,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(
-          color: Colors.red,
-        ),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Icon(
-              icon,
-              color: Colors.red,
-              size: 30,
-            ),
-          ),
-          SizedBox(
-            width: width * 0.6,
-            child: TextField(
-              obscureText: true,
-              cursorColor: Colors.red,
-              style: TextStyle(
-                color: Colors.red,
-              ),
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: height * 0.03,
-                ),
-                labelText: text,
-                labelStyle: TextStyle(
-                  color: Colors.red,
-                ),
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   void _presentDatePicker(BuildContext context) {
     showDatePicker(
-      // builder: (BuildContext context, Widget? child) {
-      //   return Theme(
-      //       data: ThemeData.light().copyWith(
-      //         colorScheme: ColorScheme.light().copyWith(
-      //           primary: Colors.red,
-      //         ),
-      //       ),
-      //       child: child);
-      // },
       context: context,
       initialDate: DateTime(2000, 08, 20),
       firstDate: DateTime(1910),
@@ -94,84 +38,89 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     });
   }
 
-  void _startChangePassword(BuildContext ctx, double height, double width) {
-    showModalBottomSheet(
-      context: ctx,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-        top: Radius.circular(30),
-      )),
-      builder: (_) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: height * 0.028,
-              ),
-              Icon(
-                Icons.lock_open,
-                color: Colors.red,
-                size: 50,
-              ),
-              SizedBox(
-                height: height * 0.007,
-              ),
-              Text(
-                'Change',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              Text(
-                'Password',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              SizedBox(
-                height: height * 0.017,
-              ),
-              Text(
-                'Make sure you remember your password',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(
-                height: height * 0.007,
-              ),
-              _buildContainer(
-                  height, width, 'Your current password', Icons.lock),
-              _buildContainer(height, width, 'Your new password', Icons.lock),
-              _buildContainer(
-                  height, width, 'Confirm password', Icons.lock_outline),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: height * 0.014,
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text(
-                    'Done'.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+  void _startShowDialogue() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SingleChildScrollView(
+            child: AlertDialog(
+              title: Column(
+                children: [
+                  Icon(
+                    Icons.lock_open,
+                    color: Colors.red,
+                    size: 35.0,
                   ),
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                        EdgeInsets.symmetric(horizontal: width * 0.085)),
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.red,
+                  Text('Change'),
+                  Text('Password'),
+                ],
+              ),
+              content: Padding(
+                padding: const EdgeInsets.only(bottom: 25.0),
+                // child: SingleChildScrollView(
+
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Make sure you remember password',
+                      style: TextStyle(color: Colors.black),
                     ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(width * 0.2),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Current Password',
                       ),
                     ),
-                  ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'New Password',
+                      ),
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Confirm Password',
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25.0),
+                      child: Text(
+                        'Forgot your password?',
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
+
+                //  ),
               ),
-            ],
-          ),
-        );
-      },
-    );
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Close'),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -181,14 +130,9 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-                      icon: Icon(
-              Icons.arrow_back_ios_outlined,
-              color: Colors.red,
-            ),
-            onPressed: (){
-              Navigator.pop(context);
-            },
+          leading: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: Colors.red,
           ),
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -553,11 +497,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                 vertical: deviceHeight * 0.014,
               ),
               child: GestureDetector(
-                onTap: () => _startChangePassword(
-                  context,
-                  deviceHeight,
-                  deviceWidth,
-                ),
+                onTap: () => _startShowDialogue(),
                 child: Row(
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
