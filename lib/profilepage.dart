@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profilepage/profile_detail_page.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -19,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         // leading: BackButton(),
-        
+
         // actions: [
         //   IconButton(
         //     // Setting Icon  Button
@@ -61,7 +60,8 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ProfileDetailPage()));
+                                      builder: (context) =>
+                                          ProfileDetailPage()));
                             },
                           ),
                         ),
@@ -79,51 +79,154 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      Text(items[index]['name']),
-                      Divider(
-                        thickness: 1.5,
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(26),
+                            color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            items[index]['name'],
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
                       ),
                       SizedBox(
-                        height: 7,
+                        height: 15,
                       ),
-                      Text(items[index]['email']),
-                      Divider(
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(items[index]['address']),
-                      Divider(
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(items[index]['phone'].toString()),
-                      Divider(
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(items[index]['dob'].toString()),
-                      Divider(
-                        thickness: 1.5,
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(26),
+                            color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            items[index]['email'],
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
                       ),
                       SizedBox(
-                        height: 7,
+                        height: 15,
                       ),
-                      Text(items[index]['gender']),
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(26)),
+                        child: Center(
+                          child: Text(
+                            items[index]['address'],
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(26),
+                            color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            items[index]['phone'].toString(),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        height: height * 0.06,
+                        width: width * .9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(26)),
+                        child: Center(
+                          child: Text(
+                            items[index]['dob'].toString(),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(26),
+                            color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            items[index]['gender'],
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                      ),
                     ],
                   );
                 }),
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+              icon: Icon(Icons.exit_to_app_outlined),
+              label: Text("Logout"),
               onPressed: () {},
-              child: Text("logout"),
             )
           ],
         ),
